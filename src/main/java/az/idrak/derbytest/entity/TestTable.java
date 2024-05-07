@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "test")
@@ -18,7 +19,9 @@ public class TestTable implements Serializable {
     private Long id;
 
 
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "testTable2_id", foreignKey = @ForeignKey(value = ConstraintMode.PROVIDER_DEFAULT, name = "Test__Test2__fk"))
+    private TestTable2 testTable2;
 
 
 }
